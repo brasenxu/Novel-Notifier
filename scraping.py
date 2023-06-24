@@ -1,4 +1,4 @@
-import requests
+import cloudscraper
 from bs4 import BeautifulSoup
 
 
@@ -27,5 +27,6 @@ def scraper(url):
 
 
 def get_soup(url):
-    page = requests.get(url)
+    scrape = cloudscraper.create_scraper()
+    page = scrape.get(url)
     return BeautifulSoup(page.content, "html.parser")
