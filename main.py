@@ -65,8 +65,8 @@ async def scrape(user):
             if content != prev[i]:
                 prev[i] = content
                 await user.send(f'**:mega: NEW CHAPTER - {scraping.scrape_title(url)} :mega:**\n{content}')
-            else:
-                await user.send(f'No new chapters for {scraping.scrape_title(url)}')
+            # else:
+            #     await user.send(f'No new chapters for {scraping.scrape_title(url)}')
 
 
 bot.run(os.getenv('BOT_ID'))
