@@ -8,6 +8,12 @@ def scrape_title(url):
     return result.text.strip()
 
 
+def scrape_thumbnail(url):
+    soup = get_soup(url)
+    result = soup.find('div', class_="book")
+    return result.img['src']
+
+
 def scrape_chapter_title(url):
     soup = get_soup(url)
     result = soup.find('div', class_="item-value")

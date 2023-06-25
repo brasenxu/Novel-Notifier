@@ -63,10 +63,19 @@ async def scrape(user):
     if urls:
         for i in range(len(urls)):
             url = urls[i]
-            con = scraping.scraper(url)
+            con = scraping.scrape_link(url)
             if con != prev[i]:
                 prev[i] = con
-                await user.send(f'**:mega: NEW CHAPTER - {scraping.scrape_title(url)} :mega:**\n{user.mention}\n{con}')
+
+                embed = discord.Embed(title="**" + scraping.scrape_title(url) + "**",
+                                      url=con,
+                                      description=scraping.scrape_chapter_title(url),
+                                      colour=0x85c5db,
+                                      timestamp=datetime.datetime.now())
+                embed.set_author(name="Novel Notifier")
+                embed.set_thumbnail(url=scraping.scrape_thumbnail(url))
+
+                await user.send(user.mention, embed=embed)
             # else:
             #     await user.send(f'No new chapters for {scraping.scrape_title(url)}')
 
