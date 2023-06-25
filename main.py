@@ -1,6 +1,7 @@
 import scraping
 import discord
 import os
+import datetime
 from dotenv import load_dotenv
 from discord.ext import commands, tasks
 
@@ -55,9 +56,10 @@ async def novels(ctx):
     await ctx.send(f'Reading List:\n {text}')
 
 
-@tasks.loop(hours=1)
+@tasks.loop(time=[datetime.time(hour=i) for i in range(24)])
 async def scrape(user):
     await bot.wait_until_ready()
+    print("running scrape")
     if urls:
         for i in range(len(urls)):
             url = urls[i]
