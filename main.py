@@ -61,10 +61,10 @@ async def scrape(user):
     if urls:
         for i in range(len(urls)):
             url = urls[i]
-            content = scraping.scraper(url)
-            if content != prev[i]:
-                prev[i] = content
-                await user.send(f'**:mega: NEW CHAPTER - {scraping.scrape_title(url)} :mega:**\n{content}')
+            con = scraping.scraper(url)
+            if con != prev[i]:
+                prev[i] = con
+                await user.send(f'**:mega: NEW CHAPTER - {scraping.scrape_title(url)} :mega:**\n{user.mention}\n{con}')
             # else:
             #     await user.send(f'No new chapters for {scraping.scrape_title(url)}')
 
